@@ -53,10 +53,22 @@ par(mfcol = c(2,2))
 
 # plot 3
 {
-        
+        plot(
+                subset$DateTime,
+                subset$Voltage,
+                type="l",
+                xlab="datetime",
+                ylab="Voltage"
+        )
 }
 # plot 4
 {
-        
+        plot(
+                subset$DateTime,
+                subset$Global_reactive_power,
+                type="l",
+                xlab="datetime",
+                ylab="Global_reactive_power"
+        )
 }
 dev.off()
