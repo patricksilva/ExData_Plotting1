@@ -4,29 +4,37 @@ subset <- read.csv.sql(file, header = T, sep=";", sql = "select * from file wher
 
 Sys.setlocale("LC_TIME","English")
 
-png(file="plot3.png")
+png(file="plot3.png", width = 480, height = 480, units = "px")
+
+subset$DateTime <- as.POSIXct(paste(subset$Date,subset$Time), format = "%d/%m/%Y %H:%M:%S")
 
 plot(
-     as.POSIXct(paste(subset$Date,subset$Time), format = "%d/%m/%Y %H:%M:%S"),
+     subset$DateTime,
      subset[ , 7],
      type="l",
      xlab="",
      ylab="Energy sub metering"
 )
-lines(as.POSIXct(paste(subset$Date,subset$Time), format = "%d/%m/%Y %H:%M:%S"),
+lines(subset$DateTime,
       subset[ , 8],
       type="l",
       xlab="",
       ylab="",
       col="red"
 )
-lines(as.POSIXct(paste(subset$Date,subset$Time), format = "%d/%m/%Y %H:%M:%S"),
+lines(subset$DateTime,
       subset[ , 9],
       type="l",
       xlab="",
       ylab="",
       col="blue"
 )
+legend("topright",
+       legend=paste("Sub_metering_",c(1,2,3)),
+       col=c("black","red","blue"),
+       lwd=.75,
+       cex=.75
+       )
 
 
 dev.off()
