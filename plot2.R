@@ -4,7 +4,7 @@ subset <- read.csv.sql(file, header = T, sep=";", sql = "select * from file wher
 
 Sys.setlocale("LC_TIME","English")
 
-png(file="plot2.png")
+png(file="plot2.png", width = 480, height = 480, units = "px")
 
 plot(
      as.POSIXct(paste(subset$Date,subset$Time), format = "%d/%m/%Y %H:%M:%S"),
